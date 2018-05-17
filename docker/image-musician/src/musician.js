@@ -25,6 +25,7 @@ if(instrument === undefined){
 
 console.log("Messages will be sent to : " + protocol.MULTICAST_ADDRESS + ":" + protocol.PORT);
 
+// Every 1 sec we play music..
 setInterval(sendMessage, 1000);
 
 var json = {

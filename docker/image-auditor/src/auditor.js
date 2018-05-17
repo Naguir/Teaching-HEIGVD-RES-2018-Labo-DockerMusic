@@ -17,7 +17,7 @@ socket.bind(protocol.PORT, function() {
 
 // The server is receiving data 
 socket.on('message', function(msg, source) {
-    console.log("Data from a Musician has arrived: " + msg + ". Source port: " + source.port);
+    console.log("Some data from a musician has arrived: " + msg + ". Source port: " + source.port);
         
     var musician = JSON.parse(msg);
 
@@ -45,13 +45,13 @@ tcpServer.on('connection', function (socket) {
 function checkInstruments() {
     for (var i = 0; i < musicians.length; i++) {
         if (moment().diff(musicians[i].activeSince) > protocol.MAX_DELAY) {
-            console.log('Mucisian removed : ' + JSON.stringify(musicians[i]));
+            console.log('Inactive musician removed : ' + JSON.stringify(musicians[i]));
             musicians.splice(i, 1);
         }
     }
 }
 
-// array to save the actives musicians
+// Here we save the musicians
 var musicians = [];
 tcpServer.listen(protocol.PORT);
-console.log("TCP Server now running on port : " + protocol.PORT);
+console.log("TCP Server running on port : " + protocol.PORT);
